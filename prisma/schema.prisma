@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Database schema
+// See text representation in /docs/schema.dbml
+model User {
+  id       Int        @id @default(autoincrement())
+  username String
+  playlist Playlist[]
+}
+
+model Playlist {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+
+  owner   User @relation(fields: [ownerId], references: [id])
+  ownerId Int
+}
