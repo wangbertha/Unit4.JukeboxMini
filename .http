@@ -1,0 +1,46 @@
+@host=http://localhost:3000
+
+### GET /users
+GET {{host}}/users
+
+### GET /users/:id, including the playlist array for the user
+GET {{host}}/users/1
+
+### GET /users/:id (unsuccessful user id)
+GET {{host}}/users/4
+
+### POST /users/:id/playlists (successful)
+POST {{host}}/users/1/playlists
+Content-Type: application/json
+
+{
+    "name": "Happy vibes",
+    "description": "This playlist is meant to uplift your mood and get you ready for the day!"
+}
+
+### POST /users/:id/playlists (unsuccessful user id)
+POST {{host}}/users/10/playlists
+Content-Type: application/json
+
+{
+    "name": "Happy vibes",
+    "description": "This playlist is meant to uplift your mood and get you ready for the day!"
+}
+
+### POST /users/:id/playlists (unsuccessful name)
+POST {{host}}/users/1/playlists
+Content-Type: application/json
+
+{
+    "nam": "Happy vibes",
+    "description": "This playlist is meant to uplift your mood and get you ready for the day!"
+}
+
+### POST /users/:id/playlists (unsuccessful user id, name, description)
+POST {{host}}/users/1/playlists
+Content-Type: application/json
+
+{
+    "nam": "Happy vibes",
+    "descriptio": "This playlist is meant to uplift your mood and get you ready for the day!"
+}
